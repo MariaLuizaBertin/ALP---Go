@@ -1,0 +1,107 @@
+[
+  {
+    "game_name": "Pokemon Legends Arceus",
+    "price": 279.00,
+    "system": "SWITCH"
+  },
+  {
+    "game_name": "God of War: Ragnarok",
+    "price": 185.00,
+    "system": "PS5"
+  },
+  {
+    "game_name": "The Witcher 3: Wild Hunt",
+    "price": 59.90,
+    "system": "PS5"
+  },
+  {
+    "game_name": "Elden Ring",
+    "price": 199.90,
+    "system": "PS5"
+  },
+  {
+    "game_name": "Cyberpunk 2077 Phantom Liberty Edition",
+    "price": 95.00,
+    "system": "XBOX SERIES S"
+  },
+  {
+    "game_name": "Forza Horizon 5 - Standard",
+    "price": 139.00,
+    "system": "XBOX SERIES S"
+  },
+  {
+    "game_name": "Hollow Knight",
+    "price": 23.49,
+    "system": "STEAM"
+  },
+  {
+    "game_name": "Super Mario Odyssey",
+    "price": 249.00,
+    "system": "SWITCH"
+  },
+  {
+    "game_name": "Spider-Man 2",
+    "price": 349.00,
+    "system": "PS5"
+  },
+  {
+    "game_name": "Starfield",
+    "price": 299.00,
+    "system": "XBOX SERIES S"
+  },
+  {
+    "game_name": "Red Dead Redemption 2",
+    "price": 159.90,
+    "system": "STEAM"
+  },
+  {
+    "game_name": "Metroid Dread",
+    "price": 229.00,
+    "system": "SWITCH"
+  },
+  {
+    "game_name": "Hades",
+    "price": 49.99,
+    "system": "STEAM"
+  },
+  {
+    "game_name": "Resident Evil Village",
+    "price": 199.00,
+    "system": "PS5"
+  },
+  {
+    "game_name": "The Legend of Zelda: Breath of the Wild",
+    "price": 299.00,
+    "system": "SWITCH"
+  },
+  {
+    "game_name": "Assassin's Creed Valhalla",
+    "price": 149.00,
+    "system": "XBOX SERIES S"
+  },
+  {
+    "game_name": "Doom Eternal",
+    "price": 89.00,
+    "system": "STEAM"
+  },
+  {
+    "game_name": "Final Fantasy VII Remake",
+    "price": 179.00,
+    "system": "PS4"
+  },
+  {
+    "game_name": "Bloodborne",
+    "price": 99.00,
+    "system": "PS4"
+  },
+  {
+    "game_name": "Halo 5: Guardians",
+    "price": 89.00,
+    "system": "XBOX ONE"
+  },
+  {
+    "game_name": "Sekiro: Shadows Die Twice",
+    "price": 149.00,
+    "system": "PS4"
+  }
+]

@@ -1,0 +1,92 @@
+[
+  {
+    "titulo": "Pokémon Legends: Arceus",
+    "valor": 299.90,
+    "console": "SWITCH"
+  },
+  {
+    "titulo": "God of War Ragnarök",
+    "valor": 179.50,
+    "console": "PS5"
+  },
+  {
+    "titulo": "The Witcher 3: Wild Hunt - Edição Completa",
+    "valor": 79.90,
+    "console": "PS5"
+  },
+  {
+    "titulo": "Elden Ring",
+    "valor": 229.00,
+    "console": "PS5"
+  },
+  {
+    "titulo": "Cyberpunk 2077",
+    "valor": 110.00,
+    "console": "XBOX SERIES S"
+  },
+  {
+    "titulo": "Forza Horizon 5",
+    "valor": 150.00,
+    "console": "XBOX SERIES S"
+  },
+  {
+    "titulo": "Hollow Knight",
+    "valor": 46.99,
+    "console": "STEAM"
+  },
+  {
+    "titulo": "Super Mario Odyssey",
+    "valor": 239.00,
+    "console": "SWITCH"
+  },
+  {
+    "titulo": "Spider-Man 2",
+    "valor": 349.00,
+    "console": "PS5"
+  },
+  {
+    "titulo": "Starfield",
+    "valor": 279.00,
+    "console": "XBOX SERIES S"
+  },
+  {
+    "titulo": "Red Dead Redemption 2",
+    "valor": 129.90,
+    "console": "STEAM"
+  },
+  {
+    "titulo": "Metroid Dread",
+    "valor": 249.00,
+    "console": "SWITCH"
+  },
+  {
+    "titulo": "Bloodborne",
+    "valor": 89.00,
+    "console": "PS4"
+  },
+  {
+    "titulo": "Halo 5: Guardians",
+    "valor": 99.00,
+    "console": "XBOX ONE"
+  },
+  {
+    "titulo": "Sekiro: Shadows Die Twice",
+    "valor": 129.00,
+    "console": "PS4"
+  },
+  {
+    "titulo": "Hades",
+    "valor": 49.99,
+    "console": "STEAM"
+  },
+  {
+    "titulo": "Resident Evil Village",
+    "valor": 199.00,
+    "console": "PS5"
+  },
+  {
+    "titulo": "The Legend of Zelda: Breath of the Wild",
+    "valor": 299.00,
+    "console": "SWITCH"
+  }
+]
