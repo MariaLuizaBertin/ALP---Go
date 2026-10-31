@@ -1,0 +1,118 @@
+[
+  {
+    "jogo": "Alan Wake 2",
+    "preco_promocional": 189.00,
+    "dispositivo": "PS5"
+  },
+  {
+    "jogo": "Alan Wake 2",
+    "preco_promocional": 179.00,
+    "dispositivo": "XBOX SERIES S"
+  },
+  {
+    "jogo": "Cyberpunk 2077",
+    "preco_promocional": 99.90,
+    "dispositivo": "PS5"
+  },
+  {
+    "jogo": "Cyberpunk 2077",
+    "preco_promocional": 85.00,
+    "dispositivo": "XBOX SERIES S"
+  },
+  {
+    "jogo": "Grand Theft Auto V",
+    "preco_promocional": 59.90,
+    "dispositivo": "PS4"
+  },
+  {
+    "jogo": "Grand Theft Auto V",
+    "preco_promocional": 49.00,
+    "dispositivo": "XBOX ONE"
+  },
+  {
+    "jogo": "Grand Theft Auto V",
+    "preco_promocional": 54.90,
+    "dispositivo": "XBOX SERIES S"
+  },
+  {
+    "jogo": "Red Dead Redemption 2",
+    "preco_promocional": 89.00,
+    "dispositivo": "XBOX ONE"
+  },
+  {
+    "jogo": "Red Dead Redemption 2",
+    "preco_promocional": 95.00,
+    "dispositivo": "PS4"
+  },
+  {
+    "jogo": "Monster Hunter: World",
+    "preco_promocional": 49.90,
+    "dispositivo": "STEAM"
+  },
+  {
+    "jogo": "Monster Hunter: World",
+    "preco_promocional": 69.00,
+    "dispositivo": "PS4"
+  },
+  {
+    "jogo": "Monster Hunter Rise",
+    "preco_promocional": 79.90,
+    "dispositivo": "SWITCH"
+  },
+  {
+    "jogo": "Monster Hunter Rise",
+    "preco_promocional": 69.90,
+    "dispositivo": "STEAM"
+  },
+  {
+    "jogo": "Horizon Forbidden West",
+    "preco_promocional": 149.00,
+    "dispositivo": "PS5"
+  },
+  {
+    "jogo": "Horizon Forbidden West",
+    "preco_promocional": 119.00,
+    "dispositivo": "PS4"
+  },
+  {
+    "jogo": "Death Stranding",
+    "preco_promocional": 79.00,
+    "dispositivo": "PS4"
+  },
+  {
+    "jogo": "Death Stranding",
+    "preco_promocional": 89.00,
+    "dispositivo": "STEAM"
+  },
+  {
+    "jogo": "Street Fighter 6",
+    "preco_promocional": 179.00,
+    "dispositivo": "PS5"
+  },
+  {
+    "jogo": "Street Fighter 6",
+    "preco_promocional": 169.00,
+    "dispositivo": "STEAM"
+  },
+  {
+    "jogo": "Street Fighter 6",
+    "preco_promocional": 175.00,
+    "dispositivo": "XBOX SERIES S"
+  },
+  {
+    "jogo": "Cuphead",
+    "preco_promocional": 24.90,
+    "dispositivo": "STEAM"
+  },
+  {
+    "jogo": "Cuphead",
+    "preco_promocional": 39.90,
+    "dispositivo": "SWITCH"
+  },
+  {
+    "jogo": "Cuphead",
+    "preco_promocional": 35.00,
+    "dispositivo": "XBOX ONE"
+  }
+]
+

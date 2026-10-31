@@ -1,79 +1,96 @@
 package main
 
 import (
-	"bufio"
-	"fmt"
 	"math"
-	"os"
 	"strings"
-	//"time"
-	//"unicode"
+
+	"example.com/m/v2/busca"
+	"example.com/m/v2/fontes"
+	"example.com/m/v2/interfaces"
+	ui "github.com/webui-dev/go-webui/v2"
 )
 
+// ==========================================
+// ESTRUTURAS DE RESPOSTA PARA A INTERFACE
+// ==========================================
+
+type RespostaBusca struct {
+	Encontrado bool              `json:"encontrado"`
+	Mensagem   string            `json:"mensagem,omitempty"`
+	Melhor     *interfaces.Item  `json:"melhor,omitempty"`
+	Resultados []interfaces.Item `json:"resultados,omitempty"`
+}
 
 // ==========================================
-// 7. LOOP PRINCIPAL
+// LOOP PRINCIPAL COM WEBUI
 // ==========================================
 
 func main() {
-	fontes := []GameSource{
-		MockFonte1{Numero: 1, Arquivo: "mock1.json"},
-		MockFonte2{Numero: 2, Arquivo: "mock2.json"},
+	// Registro das classes concretas na pasta 'fontes' usando caminhos relativos diretos
+	fontes := []interfaces.GameSource{
+		fontes.MockFonte1{Numero: 1, Arquivo: "mocks/mock1.json"},
+		fontes.MockFonte2{Numero: 2, Arquivo: "mocks/mock2.json"},
+		fontes.MockFonte3{Numero: 3, Arquivo: "mocks/mock3.json"},
+		fontes.MockFonte4{Numero: 4, Arquivo: "mocks/mock4.json"},
+		fontes.MockFonte5{Numero: 5, Arquivo: "mocks/mock5.json"},
+		fontes.MockFonte6{Numero: 6, Arquivo: "mocks/mock6.json"},
+		fontes.MockFonte7{Numero: 7, Arquivo: "mocks/mock7.json"},
 	}
 
-	scanner := bufio.NewScanner(os.Stdin)
+	// 1. Cria uma nova janela do WebUI
+	janela := ui.NewWindow()
 
-	for {
-		fmt.Println("\n==========================================")
-		fmt.Print("Digite o nome do jogo: ")
-		if !scanner.Scan() {
-			break
-		}
-		nomeBusca := strings.TrimSpace(scanner.Text())
-		if nomeBusca == "" {
-			continue
+	// 2. Ajusta as dimensões e centraliza na tela do PC
+	janela.SetSize(1280, 840)
+	janela.SetCenter()
+
+	// 3. Conecta a função de busca Go ao JavaScript do frontend
+	ui.Bind(janela, "buscarJogo", func(e ui.Event) RespostaBusca {
+		nomeBusca, _ := ui.GetArgAt[string](e, 0)
+		plataformaBusca, _ := ui.GetArgAt[string](e, 1)
+
+		nomeBusca = strings.TrimSpace(nomeBusca)
+		plataformaBusca = strings.TrimSpace(plataformaBusca)
+
+		if nomeBusca == "" || plataformaBusca == "" {
+			return RespostaBusca{
+				Encontrado: false,
+				Mensagem:   "Por favor, informe o nome do jogo e a plataforma.",
+			}
 		}
 
-		fmt.Print("Qual a plataforma (STEAM/PS4/PS5/XBOX ONE/XBOX SERIES S/SWITCH)? ")
-		if !scanner.Scan() {
-			break
-		}
-		plataformaBusca := strings.TrimSpace(scanner.Text())
-
-		resultados := executarBuscaConcorrente(fontes, nomeBusca, plataformaBusca)
+		// Executa a busca concorrente em todas as fontes
+		resultados := busca.ExecutarBuscaConcorrente(fontes, nomeBusca, plataformaBusca)
 
 		if len(resultados) == 0 {
-			fmt.Println("\nNão foi possível encontrar nenhum jogo com essas especificações.")
-		} else {
-			// Determina a oferta de menor valor
-			melhor := resultados[0]
-			minPreco := math.MaxFloat64
-
-			for _, item := range resultados {
-				if item.Preco < minPreco {
-					minPreco = item.Preco
-					melhor = item
-				}
+			return RespostaBusca{
+				Encontrado: false,
+				Mensagem:   "Não foi possível encontrar nenhum jogo com essas especificações.",
 			}
-
-			fmt.Println()
-			fmt.Printf("Nome: %s\n", melhor.Nome)
-			fmt.Printf("Plataforma: %s\n", melhor.Plataforma)
-			fmt.Printf("Valor mais baixo: R$%.2f\n", melhor.Preco)
-			fmt.Printf("Encontrado em: Mock Número %d\n", melhor.MockID)
 		}
 
-		fmt.Print("\nDeseja buscar outro jogo? (s/n): ")
-		if !scanner.Scan() {
-			break
+		// Determina a oferta de menor valor
+		melhor := resultados[0]
+		minPreco := math.MaxFloat64
+
+		for _, item := range resultados {
+			if item.Preco < minPreco {
+				minPreco = item.Preco
+				melhor = item
+			}
 		}
-		resp := strings.ToLower(strings.TrimSpace(scanner.Text()))
-		if resp != "s" && resp != "sim" {
-			fmt.Println("Encerrando programa. Até logo!")
-			break
+
+		return RespostaBusca{
+			Encontrado: true,
+			Melhor:     &melhor,
+			Resultados: resultados,
 		}
-	}
-	if err := scanner.Err(); err != nil {
-		fmt.Fprintf(os.Stderr, "Erro ao ler entrada: %v\n", err)
-	}
+	})
+
+	// 4. Configura a pasta da interface web e exibe a página principal
+	janela.SetRootFolder("ui")
+	janela.Show("index.html")
+
+	// 5. Aguarda até que todas as janelas sejam fechadas
+	ui.Wait()
 }

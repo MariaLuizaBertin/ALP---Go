@@ -1,0 +1,123 @@
+[
+  {
+    "nome": "God of War Ragnarök",
+    "preco": 169.90,
+    "plataforma": "PS5"
+  },
+  {
+    "nome": "Elden Ring",
+    "preco": 189.90,
+    "plataforma": "PS5"
+  },
+  {
+    "nome": "Elden Ring",
+    "preco": 175.00,
+    "plataforma": "STEAM"
+  },
+  {
+    "nome": "The Witcher 3: Wild Hunt",
+    "preco": 49.90,
+    "plataforma": "STEAM"
+  },
+  {
+    "nome": "Cyberpunk 2077",
+    "preco": 89.90,
+    "plataforma": "XBOX SERIES S"
+  },
+  {
+    "nome": "Cyberpunk 2077",
+    "preco": 99.00,
+    "plataforma": "STEAM"
+  },
+  {
+    "nome": "Red Dead Redemption 2",
+    "preco": 119.90,
+    "plataforma": "STEAM"
+  },
+  {
+    "nome": "Red Dead Redemption 2",
+    "preco": 99.00,
+    "plataforma": "PS4"
+  },
+  {
+    "nome": "Hollow Knight",
+    "preco": 19.90,
+    "plataforma": "STEAM"
+  },
+  {
+    "nome": "Super Mario Odyssey",
+    "preco": 229.00,
+    "plataforma": "SWITCH"
+  },
+  {
+    "nome": "The Legend of Zelda: Tears of the Kingdom",
+    "preco": 319.00,
+    "plataforma": "SWITCH"
+  },
+  {
+    "nome": "Baldur's Gate 3",
+    "preco": 199.99,
+    "plataforma": "STEAM"
+  },
+  {
+    "nome": "Baldur's Gate 3",
+    "preco": 269.00,
+    "plataforma": "PS5"
+  },
+  {
+    "nome": "Grand Theft Auto V",
+    "preco": 65.00,
+    "plataforma": "PS5"
+  },
+  {
+    "nome": "Grand Theft Auto V",
+    "preco": 49.90,
+    "plataforma": "STEAM"
+  },
+  {
+    "nome": "Ghost of Tsushima Director's Cut",
+    "preco": 149.00,
+    "plataforma": "PS5"
+  },
+  {
+    "nome": "Ghost of Tsushima",
+    "preco": 99.00,
+    "plataforma": "PS4"
+  },
+  {
+    "nome": "Dark Souls: Remastered",
+    "preco": 89.00,
+    "plataforma": "STEAM"
+  },
+  {
+    "nome": "Dark Souls: Remastered",
+    "preco": 129.00,
+    "plataforma": "SWITCH"
+  },
+  {
+    "nome": "Persona 5 Royal",
+    "preco": 139.00,
+    "plataforma": "PS5"
+  },
+  {
+    "nome": "Persona 5 Royal",
+    "preco": 119.00,
+    "plataforma": "SWITCH"
+  },
+  {
+    "nome": "Halo Infinite",
+    "preco": 120.00,
+    "plataforma": "XBOX SERIES S"
+  },
+  {
+    "nome": "Sea of Stars",
+    "preco": 79.90,
+    "plataforma": "SWITCH"
+  },
+  {
+    "nome": "Celeste",
+    "preco": 18.50,
+    "plataforma": "STEAM"
+  }
+]
+

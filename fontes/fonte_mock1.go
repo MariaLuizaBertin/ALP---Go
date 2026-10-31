@@ -1,12 +1,14 @@
-package main
+package fontes
 
 import (
 	"encoding/json"
 	"fmt"
 	"os"
 	"strings"
-)
 
+	"example.com/m/v2/busca"
+	"example.com/m/v2/interfaces"
+)
 
 // ==========================================
 // 3. IMPLEMENTAÇÃO DO MOCK 1 (mock1.json)
@@ -25,7 +27,7 @@ type ProdutoLoja1 struct {
 
 func (m MockFonte1) ID() int { return m.Numero }
 
-func (m MockFonte1) Buscar(termo string, plataforma string) ([]Item, error) {
+func (m MockFonte1) Buscar(termo string, plataforma string) ([]interfaces.Item, error) {
 	bytes, err := os.ReadFile(m.Arquivo)
 	if err != nil {
 		return nil, fmt.Errorf("erro lendo %s: %w", m.Arquivo, err)
@@ -36,11 +38,11 @@ func (m MockFonte1) Buscar(termo string, plataforma string) ([]Item, error) {
 		return nil, fmt.Errorf("erro no parse de %s: %w", m.Arquivo, err)
 	}
 
-	var encontrados []Item
+	var encontrados []interfaces.Item
 	for _, p := range produtos {
 		if strings.EqualFold(p.Console, plataforma) {
-			if atendeBusca(termo, p.Titulo) {
-				encontrados = append(encontrados, Item{
+			if busca.AtendeBusca(termo, p.Titulo) {
+				encontrados = append(encontrados, interfaces.Item{
 					Nome:       p.Titulo,
 					Plataforma: strings.ToUpper(p.Console),
 					Preco:      p.Valor,
@@ -51,3 +53,4 @@ func (m MockFonte1) Buscar(termo string, plataforma string) ([]Item, error) {
 	}
 	return encontrados, nil
 }
+

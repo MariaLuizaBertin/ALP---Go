@@ -1,0 +1,123 @@
+[
+  {
+    "title": "God of War Ragnarök",
+    "cost": 199.90,
+    "platform": "PS4"
+  },
+  {
+    "title": "Spider-Man 2",
+    "cost": 299.00,
+    "platform": "PS5"
+  },
+  {
+    "title": "The Last of Us Part 1",
+    "cost": 199.00,
+    "platform": "PS5"
+  },
+  {
+    "title": "The Last of Us Part 1",
+    "cost": 179.00,
+    "platform": "STEAM"
+  },
+  {
+    "title": "The Last of Us Part 2",
+    "cost": 119.00,
+    "platform": "PS4"
+  },
+  {
+    "title": "Elden Ring",
+    "cost": 185.00,
+    "platform": "STEAM"
+  },
+  {
+    "title": "Dark Souls 3",
+    "cost": 89.90,
+    "platform": "STEAM"
+  },
+  {
+    "title": "Dark Souls 3",
+    "cost": 99.00,
+    "platform": "PS4"
+  },
+  {
+    "title": "Dark Souls 3",
+    "cost": 95.00,
+    "platform": "XBOX ONE"
+  },
+  {
+    "title": "Mario Kart 8 Deluxe",
+    "cost": 249.00,
+    "platform": "SWITCH"
+  },
+  {
+    "title": "Super Smash Bros. Ultimate",
+    "cost": 269.00,
+    "platform": "SWITCH"
+  },
+  {
+    "title": "The Legend of Zelda: Tears of the Kingdom",
+    "cost": 299.90,
+    "platform": "SWITCH"
+  },
+  {
+    "title": "Starfield",
+    "cost": 219.00,
+    "platform": "XBOX SERIES S"
+  },
+  {
+    "title": "Starfield",
+    "cost": 229.00,
+    "platform": "STEAM"
+  },
+  {
+    "title": "Forza Horizon 5",
+    "cost": 119.00,
+    "platform": "XBOX SERIES S"
+  },
+  {
+    "title": "Forza Horizon 5",
+    "cost": 99.00,
+    "platform": "XBOX ONE"
+  },
+  {
+    "title": "Halo Infinite",
+    "cost": 89.90,
+    "platform": "STEAM"
+  },
+  {
+    "title": "Gears 5",
+    "cost": 49.00,
+    "platform": "XBOX ONE"
+  },
+  {
+    "title": "Resident Evil Village",
+    "cost": 149.00,
+    "platform": "STEAM"
+  },
+  {
+    "title": "Resident Evil Village",
+    "cost": 169.00,
+    "platform": "PS5"
+  },
+  {
+    "title": "Dave the Diver",
+    "cost": 44.90,
+    "platform": "STEAM"
+  },
+  {
+    "title": "Dave the Diver",
+    "cost": 59.90,
+    "platform": "SWITCH"
+  },
+  {
+    "title": "Stardew Valley",
+    "cost": 19.99,
+    "platform": "STEAM"
+  },
+  {
+    "title": "Stardew Valley",
+    "cost": 29.90,
+    "platform": "SWITCH"
+  }
+]
+

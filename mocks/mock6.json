@@ -1,0 +1,113 @@
+[
+  {
+    "product_name": "Tekken 8",
+    "amount": 249.00,
+    "hardware": "PS5"
+  },
+  {
+    "product_name": "Tekken 8",
+    "amount": 239.00,
+    "hardware": "STEAM"
+  },
+  {
+    "product_name": "Tekken 8",
+    "amount": 245.00,
+    "hardware": "XBOX SERIES S"
+  },
+  {
+    "product_name": "Armored Core VI: Fires of Rubicon",
+    "amount": 189.00,
+    "hardware": "PS5"
+  },
+  {
+    "product_name": "Armored Core VI: Fires of Rubicon",
+    "amount": 179.00,
+    "hardware": "STEAM"
+  },
+  {
+    "product_name": "Armored Core VI: Fires of Rubicon",
+    "amount": 185.00,
+    "hardware": "XBOX SERIES S"
+  },
+  {
+    "product_name": "Lies of P",
+    "amount": 169.00,
+    "hardware": "PS5"
+  },
+  {
+    "product_name": "Lies of P",
+    "amount": 159.00,
+    "hardware": "STEAM"
+  },
+  {
+    "product_name": "Lies of P",
+    "amount": 149.00,
+    "hardware": "XBOX SERIES S"
+  },
+  {
+    "product_name": "Dead Space Remake",
+    "amount": 149.00,
+    "hardware": "PS5"
+  },
+  {
+    "product_name": "Dead Space Remake",
+    "amount": 139.00,
+    "hardware": "STEAM"
+  },
+  {
+    "product_name": "Dead Space Remake",
+    "amount": 145.00,
+    "hardware": "XBOX SERIES S"
+  },
+  {
+    "product_name": "Bloodborne",
+    "amount": 79.90,
+    "hardware": "PS4"
+  },
+  {
+    "product_name": "Sekiro: Shadows Die Twice",
+    "amount": 115.00,
+    "hardware": "PS4"
+  },
+  {
+    "product_name": "Sekiro: Shadows Die Twice",
+    "amount": 135.00,
+    "hardware": "STEAM"
+  },
+  {
+    "product_name": "Fallout 4: Game of the Year",
+    "amount": 39.90,
+    "hardware": "STEAM"
+  },
+  {
+    "product_name": "Fallout 4: Game of the Year",
+    "amount": 49.00,
+    "hardware": "PS4"
+  },
+  {
+    "product_name": "Fallout 4: Game of the Year",
+    "amount": 45.00,
+    "hardware": "XBOX ONE"
+  },
+  {
+    "product_name": "The Witcher 3: Wild Hunt - Complete Edition",
+    "amount": 89.00,
+    "hardware": "SWITCH"
+  },
+  {
+    "product_name": "Hades",
+    "amount": 39.90,
+    "hardware": "STEAM"
+  },
+  {
+    "product_name": "Hades",
+    "amount": 54.90,
+    "hardware": "SWITCH"
+  },
+  {
+    "product_name": "Hades",
+    "amount": 69.00,
+    "hardware": "PS5"
+  }
+]
+

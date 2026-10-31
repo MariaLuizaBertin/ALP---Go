@@ -1,26 +1,27 @@
-package main
-
+package busca
 
 import (
 	"strings"
 	"sync"
+
+	"example.com/m/v2/interfaces"
 )
 
 // ==========================================
 // 5. ALGORITMO COM RUNAS (SUPORTE UTF-8 / ACENTOS)
 // ==========================================
 
-func atendeBusca(termo, candidato string) bool {
+func AtendeBusca(termo, candidato string) bool {
 	tNorm := strings.ToLower(termo)
 	cNorm := strings.ToLower(candidato)
 
 	if strings.Contains(cNorm, tNorm) {
 		return true
 	}
-	return calcularSimilaridade(tNorm, cNorm) > 0.35
+	return CalcularSimilaridade(tNorm, cNorm) > 0.35
 }
 
-func calcularSimilaridade(s1, s2 string) float64 {
+func CalcularSimilaridade(s1, s2 string) float64 {
 	// Converte strings para slices de runas para não quebrar caracteres acentuados
 	r1 := []rune(s1)
 	r2 := []rune(s2)
@@ -62,13 +63,13 @@ func calcularSimilaridade(s1, s2 string) float64 {
 // 6. BUSCA CONCORRENTE VIA GOROUTINES
 // ==========================================
 
-func executarBuscaConcorrente(fontes []GameSource, termo, plataforma string) []Item {
-	canal := make(chan []Item, len(fontes))
+func ExecutarBuscaConcorrente(fontes []interfaces.GameSource, termo, plataforma string) []interfaces.Item {
+	canal := make(chan []interfaces.Item, len(fontes))
 	var wg sync.WaitGroup
 
 	for _, fonte := range fontes {
 		wg.Add(1)
-		go func(src GameSource) {
+		go func(src interfaces.GameSource) {
 			defer wg.Done()
 			itens, err := src.Buscar(termo, plataforma)
 			if err == nil {
@@ -82,9 +83,10 @@ func executarBuscaConcorrente(fontes []GameSource, termo, plataforma string) []I
 		close(canal)
 	}()
 
-	var consolidados []Item
+	var consolidados []interfaces.Item
 	for lista := range canal {
 		consolidados = append(consolidados, lista...)
 	}
 	return consolidados
 }
+

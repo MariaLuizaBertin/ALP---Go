@@ -1,4 +1,4 @@
-package main
+package interfaces
 
 // ==========================================
 // 1. MODELO CANÔNICO
@@ -19,3 +19,4 @@ type GameSource interface {
 	ID() int
 	Buscar(termo string, plataforma string) ([]Item, error)
 }
+

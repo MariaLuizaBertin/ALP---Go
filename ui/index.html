@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comparador de Preços de Jogos | WebUI</title>
+    <!-- Folha de estilo externa (dentro da pasta interfaces) -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Ponte WebUI (Virtual / Injetada em tempo de execução) -->
+    <script src="webui.js"></script>
+</head>
+<body>
+
+    <!-- Barra de Navegação Superior -->
+    <header class="top-nav">
+        <div class="brand">
+            <span class="brand-icon">🎮</span>
+            <div>
+                <h1>GameFinder Pro</h1>
+                <span class="brand-subtitle">Comparador de Preços Multicanal Concorrente</span>
+            </div>
+        </div>
+        <div class="nav-badges">
+            <span class="badge-info">Go + WebUI v2</span>
+            <span class="badge-info">7 Goroutines Concorrentes</span>
+        </div>
+    </header>
+
+    <!-- Layout em Dashboard para PC -->
+    <main class="dashboard-container">
+        
+        <!-- Coluna Esquerda: Filtros e Fontes -->
+        <aside class="sidebar">
+            <div class="card">
+                <h2 class="card-title">🔍 Parâmetros de Pesquisa</h2>
+                
+                <form id="search-form" onsubmit="event.preventDefault(); executarBusca();">
+                    <div class="form-group">
+                        <label for="nome">Nome do Jogo</label>
+                        <input type="text" id="nome" placeholder="Ex: God of War, Cyberpunk, Elden Ring..." required autofocus autocomplete="off" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="plataforma">Plataforma</label>
+                        <select id="plataforma" required>
+                            <option value="" disabled selected>Selecione a plataforma...</option>
+                            <option value="STEAM">STEAM (PC)</option>
+                            <option value="PS4">PlayStation 4 (PS4)</option>
+                            <option value="PS5">PlayStation 5 (PS5)</option>
+                            <option value="XBOX ONE">Xbox One</option>
+                            <option value="XBOX SERIES S">Xbox Series S</option>
+                            <option value="SWITCH">Nintendo Switch</option>
+                        </select>
+                    </div>
+
+                    <div class="button-stack">
+                        <button type="submit" id="btn-submit" class="btn-primary">
+                            <span id="btn-text">Buscar Ofertas</span>
+                            <span id="btn-spinner" class="spinner" style="display: none;"></span>
+                        </button>
+                        <button type="button" class="btn-secondary" onclick="limparCampos()">Nova Busca</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Informações das Fontes de Dados Concorrentes -->
+            <div class="card info-card">
+                <h2 class="card-title">📡 7 Fontes Concorrentes Ativas</h2>
+                <p>Busca simultânea via canais Go com Goroutines paralelas e casamento fonético/trigramas:</p>
+                <ul class="sources-list">
+                    <li>
+                        <span><span class="source-status"></span>Mock Fonte 1</span>
+                        <code style="color: #64748b;">mocks/mock1.json</code>
+                    </li>
+                    <li>
+                        <span><span class="source-status"></span>Mock Fonte 2</span>
+                        <code style="color: #64748b;">mocks/mock2.json</code>
+                    </li>
+                    <li>
+                        <span><span class="source-status"></span>Mock Fonte 3</span>
+                        <code style="color: #64748b;">mocks/mock3.json</code>
+                    </li>
+                    <li>
+                        <span><span class="source-status"></span>Mock Fonte 4</span>
+                        <code style="color: #64748b;">mocks/mock4.json</code>
+                    </li>
+                    <li>
+                        <span><span class="source-status"></span>Mock Fonte 5</span>
+                        <code style="color: #64748b;">mocks/mock5.json</code>
+                    </li>
+                    <li>
+                        <span><span class="source-status"></span>Mock Fonte 6</span>
+                        <code style="color: #64748b;">mocks/mock6.json</code>
+                    </li>
+                    <li>
+                        <span><span class="source-status"></span>Mock Fonte 7</span>
+                        <code style="color: #64748b;">mocks/mock7.json</code>
+                    </li>
+                </ul>
+            </div>
+        </aside>
+
+        <!-- Coluna Direita: Resultados da Busca -->
+        <section class="main-content">
+            
+            <!-- Caixa de Mensagem / Erro -->
+            <div id="status-box" class="status-msg"></div>
+
+            <!-- Card Destaque: Menor Preço Encontrado -->
+            <div id="best-deal-card" class="best-deal-card">
+                <div class="deal-header">
+                    <span class="deal-badge">🏆 Menor Preço Encontrado</span>
+                </div>
+                <h2 id="deal-nome" class="deal-title">-</h2>
+                <div class="deal-grid">
+                    <div class="stat-box">
+                        <div class="stat-label">Valor Mais Baixo</div>
+                        <div id="deal-preco" class="stat-value price-highlight">-</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-label">Plataforma</div>
+                        <div id="deal-plataforma" class="stat-value">-</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-label">Loja / Origem</div>
+                        <div id="deal-mock" class="stat-value">-</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tabela com Todas as Ofertas Encontradas -->
+            <div id="table-card" class="table-card">
+                <div class="table-header">
+                    <h3 class="table-title">📊 Comparativo de Todas as Ofertas</h3>
+                    <span id="results-count" class="results-count"></span>
+                </div>
+                <div class="table-wrapper">
+                    <table class="results-table">
+                        <thead>
+                            <tr>
+                                <th>Título do Jogo</th>
+                                <th>Plataforma</th>
+                                <th>Preço</th>
+                                <th>Fonte</th>
+                            </tr>
+                        </thead>
+                        <tbody id="table-body"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Placeholder antes da busca -->
+            <div id="placeholder-view" class="placeholder-view">
+                <div class="placeholder-icon">🎯</div>
+                <h3>Pronto para buscar jogos</h3>
+                <p>Preencha o nome do jogo e a plataforma ao lado para consultar os preços nas 7 fontes cadastradas.</p>
+            </div>
+
+        </section>
+    </main>
+
+    <!-- Script com a lógica do frontend (dentro da pasta interfaces) -->
+    <script src="app.js"></script>
+</body>
+</html>
