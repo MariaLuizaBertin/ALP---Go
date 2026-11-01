@@ -88,5 +88,15 @@
     "titulo": "The Legend of Zelda: Breath of the Wild",
     "valor": 299.00,
     "console": "SWITCH"
+  },
+  {
+    "titulo": "LEGO Star Wars: The Skywalker Saga",
+    "valor": 99.00,
+    "console": "PS5"
+  },
+  {
+    "titulo": "LEGO City Undercover",
+    "valor": 59.00,
+    "console": "PS4"
   }
 ]

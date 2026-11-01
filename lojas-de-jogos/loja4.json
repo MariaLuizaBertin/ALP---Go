@@ -118,6 +118,16 @@
     "title": "Stardew Valley",
     "cost": 29.90,
     "platform": "SWITCH"
+  },
+  {
+    "title": "Lego Star Wars: The Skywalker Saga",
+    "cost": 189.99,
+    "platform": "PS5"
+  },
+  {
+    "title": "LEGO Batman: Legacy of the Dark Knight ",
+    "cost": 289.90,
+    "platform": "PS5"
   }
 ]
 

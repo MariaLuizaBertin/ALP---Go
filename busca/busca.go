@@ -1,6 +1,9 @@
 package busca
 
 import (
+	"errors"
+	"fmt"
+	"io/fs"
 	"strings"
 	"sync"
 
@@ -59,12 +62,41 @@ func CalcularSimilaridade(s1, s2 string) float64 {
 	return 2.0 * float64(interseccao) / float64(len(t1)+len(t2))
 }
 
+// MensagemAvisoLoja gera uma mensagem de aviso amigável para o usuário com base no erro retornado pela loja.
+func MensagemAvisoLoja(id int, err error) string {
+	if err == nil {
+		return ""
+	}
+
+	motivo := strings.ToLower(err.Error())
+
+	switch {
+	case errors.Is(err, fs.ErrNotExist) ||
+		strings.Contains(motivo, "no such file") ||
+		strings.Contains(motivo, "not exist") ||
+		strings.Contains(motivo, "cannot find the file specified") ||
+		strings.Contains(motivo, "arquivo não encontrado"):
+		return fmt.Sprintf("A loja %d não pode ser consultada porque o arquivo não foi encontrado.", id)
+	case errors.Is(err, fs.ErrPermission) ||
+		strings.Contains(motivo, "permission denied") ||
+		strings.Contains(motivo, "acesso negado") ||
+		strings.Contains(motivo, "não pode ser aberto") ||
+		strings.Contains(motivo, "forbidden"):
+		return fmt.Sprintf("A loja %d não pode ser consultada porque o arquivo não pode ser aberto.", id)
+	case strings.Contains(motivo, "connection refused") || strings.Contains(motivo, "timeout") || strings.Contains(motivo, "dial tcp") || strings.Contains(motivo, "network is unreachable") || strings.Contains(motivo, "connection reset"):
+		return fmt.Sprintf("A loja %d não pode ser consultada devido a uma falha na conexão.", id)
+	default:
+		return fmt.Sprintf("A loja %d não pode ser consultada no momento. Motivo: %s", id, err)
+	}
+}
+
 // ==========================================
 // 6. BUSCA CONCORRENTE VIA GOROUTINES
 // ==========================================
 
-func ExecutarBuscaConcorrente(fontes []interfaces.GameSource, termo, plataforma string) []interfaces.Item {
+func ExecutarBuscaConcorrente(fontes []interfaces.GameSource, termo, plataforma string) ([]interfaces.Item, []string) {
 	canal := make(chan []interfaces.Item, len(fontes))
+	avisos := make(chan string, len(fontes))
 	var wg sync.WaitGroup
 
 	for _, fonte := range fontes {
@@ -72,21 +104,29 @@ func ExecutarBuscaConcorrente(fontes []interfaces.GameSource, termo, plataforma 
 		go func(src interfaces.GameSource) {
 			defer wg.Done()
 			itens, err := src.Buscar(termo, plataforma)
-			if err == nil {
-				canal <- itens
+			if err != nil {
+				avisos <- MensagemAvisoLoja(src.ID(), err)
+				return
 			}
+			canal <- itens
 		}(fonte)
 	}
 
 	go func() {
 		wg.Wait()
 		close(canal)
+		close(avisos)
 	}()
 
 	var consolidados []interfaces.Item
 	for lista := range canal {
 		consolidados = append(consolidados, lista...)
 	}
-	return consolidados
-}
 
+	var avisosLista []string
+	for aviso := range avisos {
+		avisosLista = append(avisosLista, aviso)
+	}
+
+	return consolidados, avisosLista
+}

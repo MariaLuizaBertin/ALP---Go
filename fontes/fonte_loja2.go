@@ -11,46 +11,45 @@ import (
 )
 
 // ==========================================
-// 3. IMPLEMENTAÇÃO DO MOCK 1 (mock1.json)
+// 4. IMPLEMENTAÇÃO DO MOCK 2 (loja2.json)
 // ==========================================
 
-type MockFonte1 struct {
+type LojaFonte2 struct {
 	Numero  int
 	Arquivo string
 }
 
-type ProdutoLoja1 struct {
-	Titulo  string  `json:"titulo"`
-	Valor   float64 `json:"valor"`
-	Console string  `json:"console"`
+type ProdutoLoja2 struct {
+	GameName string  `json:"game_name"`
+	Price    float64 `json:"price"`
+	System   string  `json:"system"`
 }
 
-func (m MockFonte1) ID() int { return m.Numero }
+func (m LojaFonte2) ID() int { return m.Numero }
 
-func (m MockFonte1) Buscar(termo string, plataforma string) ([]interfaces.Item, error) {
+func (m LojaFonte2) Buscar(termo string, plataforma string) ([]interfaces.Item, error) {
 	bytes, err := os.ReadFile(m.Arquivo)
 	if err != nil {
 		return nil, fmt.Errorf("erro lendo %s: %w", m.Arquivo, err)
 	}
 
-	var produtos []ProdutoLoja1
+	var produtos []ProdutoLoja2
 	if err := json.Unmarshal(bytes, &produtos); err != nil {
 		return nil, fmt.Errorf("erro no parse de %s: %w", m.Arquivo, err)
 	}
 
 	var encontrados []interfaces.Item
 	for _, p := range produtos {
-		if strings.EqualFold(p.Console, plataforma) {
-			if busca.AtendeBusca(termo, p.Titulo) {
+		if strings.EqualFold(p.System, plataforma) || strings.EqualFold(plataforma, "TODAS") {
+			if busca.AtendeBusca(termo, p.GameName) {
 				encontrados = append(encontrados, interfaces.Item{
-					Nome:       p.Titulo,
-					Plataforma: strings.ToUpper(p.Console),
-					Preco:      p.Valor,
-					MockID:     m.Numero,
+					Nome:       p.GameName,
+					Plataforma: strings.ToUpper(p.System),
+					Preco:      p.Price,
+					LojaID:     m.Numero,
 				})
 			}
 		}
 	}
 	return encontrados, nil
 }
-

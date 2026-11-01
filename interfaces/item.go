@@ -8,7 +8,7 @@ type Item struct {
 	Nome       string
 	Plataforma string
 	Preco      float64
-	MockID     int
+	LojaID     int
 }
 
 // ==========================================
@@ -19,4 +19,3 @@ type GameSource interface {
 	ID() int
 	Buscar(termo string, plataforma string) ([]Item, error)
 }
-

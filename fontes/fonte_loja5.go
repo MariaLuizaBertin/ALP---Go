@@ -11,10 +11,10 @@ import (
 )
 
 // ==========================================
-// IMPLEMENTAÇÃO DO MOCK 5 (mock5.json)
+// IMPLEMENTAÇÃO DO MOCK 5 (loja5.json)
 // ==========================================
 
-type MockFonte5 struct {
+type LojaFonte5 struct {
 	Numero  int
 	Arquivo string
 }
@@ -25,9 +25,9 @@ type ProdutoLoja5 struct {
 	Dispositivo      string  `json:"dispositivo"`
 }
 
-func (m MockFonte5) ID() int { return m.Numero }
+func (m LojaFonte5) ID() int { return m.Numero }
 
-func (m MockFonte5) Buscar(termo string, plataforma string) ([]interfaces.Item, error) {
+func (m LojaFonte5) Buscar(termo string, plataforma string) ([]interfaces.Item, error) {
 	bytes, err := os.ReadFile(m.Arquivo)
 	if err != nil {
 		return nil, fmt.Errorf("erro lendo %s: %w", m.Arquivo, err)
@@ -40,17 +40,16 @@ func (m MockFonte5) Buscar(termo string, plataforma string) ([]interfaces.Item, 
 
 	var encontrados []interfaces.Item
 	for _, p := range produtos {
-		if strings.EqualFold(p.Dispositivo, plataforma) {
+		if strings.EqualFold(p.Dispositivo, plataforma) || strings.EqualFold(plataforma, "TODAS") {
 			if busca.AtendeBusca(termo, p.Jogo) {
 				encontrados = append(encontrados, interfaces.Item{
 					Nome:       p.Jogo,
 					Plataforma: strings.ToUpper(p.Dispositivo),
 					Preco:      p.PrecoPromocional,
-					MockID:     m.Numero,
+					LojaID:     m.Numero,
 				})
 			}
 		}
 	}
 	return encontrados, nil
 }
-

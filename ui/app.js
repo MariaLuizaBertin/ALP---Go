@@ -47,16 +47,27 @@ async function executarBusca() {
 
         const data = typeof rawResponse === 'string' ? JSON.parse(rawResponse) : rawResponse;
 
+        const avisosHtml = formatAvisos(data && data.avisos);
+
         if (!data || !data.encontrado) {
             statusBox.className = "status-msg error";
-            statusBox.innerHTML = `<span>⚠️ ${escapeHtml(data.mensagem || "Não foi possível encontrar nenhum jogo com essas especificações.")}</span>`;
+            const mensagem = data && data.mensagem ? data.mensagem : "Não foi possível encontrar nenhum jogo com essas especificações.";
+            statusBox.innerHTML = `<span>${avisosHtml ? avisosHtml + '<br>' : ''}⚠️ ${escapeHtml(mensagem)}</span>`;
             statusBox.style.display = "flex";
         } else {
+            if (avisosHtml) {
+                statusBox.className = "status-msg warning";
+                statusBox.innerHTML = `<span>${avisosHtml}</span>`;
+                statusBox.style.display = "flex";
+            } else {
+                statusBox.style.display = "none";
+            }
+
             // 1. Preenche e exibe o card da MELHOR OFERTA (Menor Valor)
             document.getElementById('deal-nome').textContent = data.melhor.Nome;
             document.getElementById('deal-plataforma').textContent = data.melhor.Plataforma;
             document.getElementById('deal-preco').textContent = formatMoney(data.melhor.Preco);
-            document.getElementById('deal-mock').textContent = `Mock #${data.melhor.MockID}`;
+            document.getElementById('deal-loja').textContent = `Loja #${data.melhor.LojaID}`;
             bestDealCard.style.display = "block";
 
             // 2. Preenche e exibe a tabela com TODAS as ofertas encontradas
@@ -71,7 +82,7 @@ async function executarBusca() {
                     const isMelhor = item.Nome === data.melhor.Nome && 
                                      item.Plataforma === data.melhor.Plataforma && 
                                      item.Preco === data.melhor.Preco && 
-                                     item.MockID === data.melhor.MockID;
+                                     item.LojaID === data.melhor.LojaID;
 
                     const tr = document.createElement('tr');
                     tr.innerHTML = `
@@ -81,7 +92,7 @@ async function executarBusca() {
                         </td>
                         <td><span class="platform-tag">${escapeHtml(item.Plataforma)}</span></td>
                         <td class="price-cell ${isMelhor ? 'lowest' : ''}">${formatMoney(item.Preco)}</td>
-                        <td><span class="source-badge">⚡ Mock #${item.MockID}</span></td>
+                        <td><span class="source-badge">⚡ Loja #${item.LojaID}</span></td>
                     `;
                     tbody.appendChild(tr);
                 });
@@ -112,6 +123,11 @@ function limparCampos() {
 function formatMoney(val) {
     if (typeof val !== 'number') return 'R$ 0,00';
     return 'R$ ' + val.toFixed(2).replace('.', ',');
+}
+
+function formatAvisos(avisos) {
+    if (!Array.isArray(avisos) || avisos.length === 0) return '';
+    return `⚠️ Aviso sobre as consultas:<br>${avisos.map(aviso => `• ${escapeHtml(aviso)}`).join('<br>')}`;
 }
 
 function escapeHtml(text) {

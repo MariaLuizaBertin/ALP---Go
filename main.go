@@ -17,6 +17,7 @@ import (
 type RespostaBusca struct {
 	Encontrado bool              `json:"encontrado"`
 	Mensagem   string            `json:"mensagem,omitempty"`
+	Avisos     []string          `json:"avisos,omitempty"`
 	Melhor     *interfaces.Item  `json:"melhor,omitempty"`
 	Resultados []interfaces.Item `json:"resultados,omitempty"`
 }
@@ -28,13 +29,13 @@ type RespostaBusca struct {
 func main() {
 	// Registro das classes concretas na pasta 'fontes' usando caminhos relativos diretos
 	fontes := []interfaces.GameSource{
-		fontes.MockFonte1{Numero: 1, Arquivo: "mocks/mock1.json"},
-		fontes.MockFonte2{Numero: 2, Arquivo: "mocks/mock2.json"},
-		fontes.MockFonte3{Numero: 3, Arquivo: "mocks/mock3.json"},
-		fontes.MockFonte4{Numero: 4, Arquivo: "mocks/mock4.json"},
-		fontes.MockFonte5{Numero: 5, Arquivo: "mocks/mock5.json"},
-		fontes.MockFonte6{Numero: 6, Arquivo: "mocks/mock6.json"},
-		fontes.MockFonte7{Numero: 7, Arquivo: "mocks/mock7.json"},
+		fontes.LojaFonte1{Numero: 1, Arquivo: "lojas-de-jogos/loja1.json"},
+		fontes.LojaFonte2{Numero: 2, Arquivo: "lojas-de-jogos/loja2.json"},
+		fontes.LojaFonte3{Numero: 3, Arquivo: "lojas-de-jogos/loja3.json"},
+		fontes.LojaFonte4{Numero: 4, Arquivo: "lojas-de-jogos/loja4.json"},
+		fontes.LojaFonte5{Numero: 5, Arquivo: "lojas-de-jogos/loja5.json"},
+		fontes.LojaFonte6{Numero: 6, Arquivo: "lojas-de-jogos/loja6.json"},
+		fontes.LojaFonte7{Numero: 7, Arquivo: "lojas-de-jogos/loja7.json"},
 	}
 
 	// 1. Cria uma nova janela do WebUI
@@ -60,12 +61,13 @@ func main() {
 		}
 
 		// Executa a busca concorrente em todas as fontes
-		resultados := busca.ExecutarBuscaConcorrente(fontes, nomeBusca, plataformaBusca)
+		resultados, avisos := busca.ExecutarBuscaConcorrente(fontes, nomeBusca, plataformaBusca)
 
 		if len(resultados) == 0 {
 			return RespostaBusca{
 				Encontrado: false,
 				Mensagem:   "Não foi possível encontrar nenhum jogo com essas especificações.",
+				Avisos:     avisos,
 			}
 		}
 
@@ -84,6 +86,7 @@ func main() {
 			Encontrado: true,
 			Melhor:     &melhor,
 			Resultados: resultados,
+			Avisos:     avisos,
 		}
 	})
 
